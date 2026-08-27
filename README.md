@@ -48,7 +48,7 @@ cd Intelligent-Email-Assistant
 **Backend `.env` (in `/backend`):**
 ```env
 PORT=5000
-FRONTEND_URL=http://localhost:5173
+FRONTEND_URL=http: https://intelligent-email-assistant-three.vercel.app/login
 JWT_SECRET=your_jwt_secret
 MONGODB_URI=your_mongodb_connection_string
 GOOGLE_CLIENT_ID=your_google_client_id
