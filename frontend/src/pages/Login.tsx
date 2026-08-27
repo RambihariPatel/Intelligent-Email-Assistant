@@ -2,8 +2,19 @@ import React from 'react';
 import { Mail } from 'lucide-react';
 
 export default function Login() {
-  const handleLogin = () => {
-    window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/google`;
+  const handleLogin = async () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${apiUrl}/auth/google/url`);
+      const data = await response.json();
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error('Failed to get login URL', error);
+      // Fallback
+      window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/google`;
+    }
   };
 
   return (

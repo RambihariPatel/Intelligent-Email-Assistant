@@ -8,6 +8,11 @@ export const googleAuth = (req: Request, res: Response) => {
   res.redirect(url);
 };
 
+export const getGoogleAuthUrl = (req: Request, res: Response) => {
+  const url = generateAuthUrl();
+  res.json({ url });
+};
+
 export const googleAuthCallback = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const code = req.query.code as string;
