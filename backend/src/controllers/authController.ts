@@ -33,7 +33,7 @@ export const googleAuthCallback = async (req: Request, res: Response, next: Next
       if (tokens.refresh_token) {
         user.refreshToken = tokens.refresh_token;
       }
-      user.accessToken = tokens.access_token;
+      user.accessToken = tokens.access_token || undefined;
     }
     
     await user.save();
