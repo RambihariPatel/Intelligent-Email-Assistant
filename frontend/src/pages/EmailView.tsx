@@ -225,20 +225,20 @@ export default function EmailView() {
       <div className="flex-1 overflow-y-auto p-6 md:p-8 flex flex-col md:flex-row gap-6 max-w-7xl mx-auto w-full">
         {/* Email Content */}
         <div className="flex-1 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
-          <div className="p-6 border-b border-slate-100 bg-slate-50/50">
-            <div className="flex items-center justify-between mb-4">
+          <div className="p-4 sm:p-6 border-b border-slate-100 bg-slate-50/50">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center text-xl font-bold shadow-md">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center text-lg sm:text-xl font-bold shadow-md">
                   {from.charAt(0).toUpperCase()}
                 </div>
-                <div>
-                  <h3 className="font-semibold text-slate-800 text-lg leading-tight">{from}</h3>
-                  <div className="flex items-center gap-2 text-sm text-slate-500 mt-1">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-slate-800 text-base sm:text-lg leading-tight truncate">{from}</h3>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 mt-1">
                     <User size={14} /> to me
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-sm text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full w-fit">
                 <Clock size={14} />
                 {new Date(dateStr).toLocaleString()}
               </div>

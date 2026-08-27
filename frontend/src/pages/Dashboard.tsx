@@ -92,42 +92,47 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 text-slate-800 font-sans">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-50 text-slate-800 font-sans overflow-hidden">
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-slate-200 flex flex-col shadow-sm z-10">
-        <div className="p-6 border-b border-slate-200 flex items-center gap-3">
-          <div className="bg-indigo-600 p-2 rounded-lg text-white shadow-md">
-            <Mail size={22} />
+      <div className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shadow-sm z-10 flex-shrink-0">
+        <div className="p-4 md:p-6 border-b border-slate-200 flex items-center justify-between md:justify-start gap-3">
+          <div className="flex items-center gap-3">
+            <div className="bg-indigo-600 p-2 rounded-lg text-white shadow-md">
+              <Mail size={22} />
+            </div>
+            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">
+              AgentMail
+            </span>
           </div>
-          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">
-            AgentMail AI
-          </span>
+          <button onClick={() => setIsComposeOpen(true)} className="md:hidden flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-full font-bold shadow hover:bg-indigo-700 transition">
+            <Edit3 size={18} /> Compose
+          </button>
         </div>
-        <div className="flex-1 overflow-y-auto py-4 px-3">
-          <ul className="space-y-1">
+        <div className="overflow-x-auto md:flex-1 md:overflow-y-auto py-2 md:py-4 px-3 scrollbar-hide">
+          <ul className="flex flex-row md:flex-col space-x-2 md:space-x-0 md:space-y-1">
             <li>
-              <button onClick={() => setFilter('')} className={`w-full flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === '' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-100'}`}>
-                <Inbox size={20} /> Inbox
+              <button onClick={() => setFilter('')} className={`whitespace-nowrap flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === '' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-100'}`}>
+                <Inbox size={20} /> <span className="hidden sm:inline md:inline">Inbox</span>
               </button>
             </li>
             <li>
-              <button onClick={() => setFilter('starred')} className={`w-full flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === 'starred' ? 'bg-yellow-50 text-yellow-700' : 'text-slate-600 hover:bg-slate-100'}`}>
-                <Star size={20} /> Starred
+              <button onClick={() => setFilter('starred')} className={`whitespace-nowrap flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === 'starred' ? 'bg-yellow-50 text-yellow-700' : 'text-slate-600 hover:bg-slate-100'}`}>
+                <Star size={20} /> <span className="hidden sm:inline md:inline">Starred</span>
               </button>
             </li>
             <li>
-              <button onClick={() => setFilter('sent')} className={`w-full flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === 'sent' ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100'}`}>
-                <Send size={20} /> Sent
+              <button onClick={() => setFilter('sent')} className={`whitespace-nowrap flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === 'sent' ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100'}`}>
+                <Send size={20} /> <span className="hidden sm:inline md:inline">Sent</span>
               </button>
             </li>
             <li>
-              <button onClick={() => setFilter('trash')} className={`w-full flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === 'trash' ? 'bg-red-50 text-red-700' : 'text-slate-600 hover:bg-slate-100'}`}>
-                <Trash2 size={20} /> Trash
+              <button onClick={() => setFilter('trash')} className={`whitespace-nowrap flex items-center gap-3 p-3 rounded-xl cursor-pointer font-semibold transition-colors ${filter === 'trash' ? 'bg-red-50 text-red-700' : 'text-slate-600 hover:bg-slate-100'}`}>
+                <Trash2 size={20} /> <span className="hidden sm:inline md:inline">Trash</span>
               </button>
             </li>
           </ul>
         </div>
-        <div className="p-4 border-t border-slate-200">
+        <div className="hidden md:block p-4 border-t border-slate-200">
           <button onClick={logout} className="flex items-center gap-3 text-slate-500 hover:text-red-500 hover:bg-red-50 w-full p-3 rounded-xl transition-colors font-medium">
             <LogOut size={20} /> Sign Out
           </button>
@@ -137,8 +142,8 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col relative overflow-hidden">
         {/* Header */}
-        <header className="h-20 border-b border-slate-200 bg-white/80 backdrop-blur-md flex items-center px-8 justify-between z-10 sticky top-0">
-          <form onSubmit={handleSearch} className="flex items-center bg-slate-100/80 hover:bg-slate-100 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo-500/20 px-4 py-2.5 rounded-full w-[450px] transition-all shadow-sm border border-transparent focus-within:border-indigo-300">
+        <header className="h-auto md:h-20 border-b border-slate-200 bg-white/80 backdrop-blur-md flex flex-col md:flex-row items-center p-4 md:px-8 justify-between z-10 sticky top-0 gap-4 md:gap-0">
+          <form onSubmit={handleSearch} className="flex items-center bg-slate-100/80 hover:bg-slate-100 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo-500/20 px-4 py-2.5 rounded-full w-full md:w-[450px] transition-all shadow-sm border border-transparent focus-within:border-indigo-300">
             <Search size={18} className="text-slate-400" />
             <input 
               type="text" 
@@ -148,9 +153,14 @@ export default function Dashboard() {
               className="bg-transparent border-none outline-none ml-3 w-full text-slate-700 placeholder-slate-400"
             />
           </form>
-          <button onClick={() => setIsComposeOpen(true)} className="flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-full font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 hover:-translate-y-0.5 transition-all active:translate-y-0">
-            <Edit3 size={18} /> Compose
-          </button>
+          <div className="flex w-full md:w-auto items-center justify-between md:justify-end gap-2">
+            <button onClick={logout} className="md:hidden flex items-center gap-2 text-slate-500 hover:text-red-500 hover:bg-red-50 px-4 py-2 rounded-xl transition-colors font-medium">
+              <LogOut size={18} /> <span className="text-sm">Sign Out</span>
+            </button>
+            <button onClick={() => setIsComposeOpen(true)} className="hidden md:flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-full font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 hover:-translate-y-0.5 transition-all active:translate-y-0">
+              <Edit3 size={18} /> Compose
+            </button>
+          </div>
         </header>
 
         {/* Email List */}
@@ -201,23 +211,25 @@ export default function Dashboard() {
                         <div 
                           key={email.id} 
                           onClick={() => navigate(`/email/${email.id}`)}
-                          className="group flex items-center gap-4 p-4 hover:bg-indigo-50/50 cursor-pointer transition-colors"
+                          className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 p-4 hover:bg-indigo-50/50 cursor-pointer transition-colors"
                         >
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-100 to-blue-100 text-indigo-600 flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-sm border border-indigo-200 group-hover:from-indigo-200 group-hover:to-blue-200 transition-colors">
-                            {initial}
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center gap-4">
-                            <div className="w-48 flex-shrink-0">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-100 to-blue-100 text-indigo-600 flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-sm border border-indigo-200 group-hover:from-indigo-200 group-hover:to-blue-200 transition-colors">
+                              {initial}
+                            </div>
+                            <div className="w-full sm:w-24 md:w-48 flex-shrink-0">
                               <p className="font-semibold text-slate-800 truncate">{filter === 'sent' ? `To: ${senderName}` : senderName}</p>
                             </div>
+                          </div>
+                          <div className="flex-1 min-w-0 flex items-center gap-2 sm:gap-4 ml-12 sm:ml-0">
                             <div className="flex-1 truncate">
-                              <span className="font-medium text-slate-800">{subject}</span>
-                              <span className="text-slate-400 mx-2">-</span>
-                              <span className="text-slate-500 text-sm truncate">{email.snippet}</span>
+                              <span className="font-medium text-slate-800 text-sm sm:text-base">{subject}</span>
+                              <span className="hidden sm:inline text-slate-400 mx-2">-</span>
+                              <span className="text-slate-500 text-xs sm:text-sm truncate block sm:inline">{email.snippet}</span>
                             </div>
                           </div>
                           {/* Time & Actions */}
-                          <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                          <div className="flex items-center sm:flex-col sm:items-end justify-between sm:justify-center gap-2 flex-shrink-0 ml-12 sm:ml-0 mt-2 sm:mt-0">
                             <span className="text-xs font-semibold text-slate-400 group-hover:text-indigo-600 transition-colors">{timeString}</span>
                             
                             {/* AI Tag */}
