@@ -25,7 +25,7 @@ export const googleAuthCallback = async (req: Request, res: Response, next: Next
         googleId: profile.id,
         email: profile.email,
         name: profile.name,
-        avatar: profile.picture,
+        avatar: profile.picture as string | undefined,
         refreshToken: tokens.refresh_token,
       });
     } else {

@@ -5,7 +5,7 @@ export const getEmails = async (req: Request, res: Response, next: NextFunction)
   try {
     const { maxResults, pageToken, q } = req.query;
     const data = await gmailService.listEmails(
-      req.user._id,
+      req.user._id as string,
       maxResults ? parseInt(maxResults as string) : 20,
       pageToken as string,
       q as string
@@ -18,7 +18,7 @@ export const getEmails = async (req: Request, res: Response, next: NextFunction)
 
 export const getEmailById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const data = await gmailService.getEmail(req.user._id, req.params.id);
+    const data = await gmailService.getEmail(req.user._id as string, req.params.id as string);
     res.json(data);
   } catch (error) {
     next(error);
@@ -28,7 +28,7 @@ export const getEmailById = async (req: Request, res: Response, next: NextFuncti
 export const sendNewEmail = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { to, subject, body, threadId, messageId } = req.body;
-    const data = await gmailService.sendEmail(req.user._id, to, subject, body, threadId, messageId);
+    const data = await gmailService.sendEmail(req.user._id as string, to as string, subject as string, body as string, threadId as string, messageId as string);
     res.json({ success: true, data });
   } catch (error) {
     next(error);
@@ -38,7 +38,7 @@ export const sendNewEmail = async (req: Request, res: Response, next: NextFuncti
 export const updateEmailLabels = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { addLabelIds, removeLabelIds } = req.body;
-    const data = await gmailService.modifyEmail(req.user._id, req.params.id, addLabelIds || [], removeLabelIds || []);
+    const data = await gmailService.modifyEmail(req.user._id as string, req.params.id as string, addLabelIds || [], removeLabelIds || []);
     res.json({ success: true, data });
   } catch (error) {
     next(error);
