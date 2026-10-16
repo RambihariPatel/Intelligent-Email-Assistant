@@ -12,7 +12,7 @@ An advanced, full-stack email management application that integrates seamlessly 
 - **Spam & Phishing Shield**: AI analyzes the tone, links, and urgency of emails to flag potential phishing attempts or spam before you click.
 - **Full Email Management**: Read, send, reply, and move emails to trash directly from the beautiful UI.
 
-## ??? Tech Stack
+## ??? Tech Stack //
 
 **Frontend:**
 - React (Vite)
